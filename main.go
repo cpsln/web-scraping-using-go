@@ -74,10 +74,12 @@ func scrapData(w http.ResponseWriter, r *http.Request) {
                 fmt.Println("Data Save", id)
             }
             
-            json.NewEncoder(w).Encode(product)
-            return
+            err_res.StatusCode = 200
+            err_res.Message = fmt.Sprintf("Data saved, product id is: %d ", id);
+            json.NewEncoder(w).Encode(err_res)
         })
         c.Visit(url.Url)
+        return
 	} 
 
     err_res.StatusCode = 404
